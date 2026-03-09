@@ -1,0 +1,218 @@
+:root {
+  --bg: #f3efe5;
+  --surface: #ffffff;
+  --surface-muted: #ece7db;
+  --ink: #161616;
+  --accent: #ef8f00;
+  --danger: #b42318;
+  --border: #191919;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 0 0, #fff2d6, transparent 40%),
+    radial-gradient(circle at 100% 100%, #e8f5ff, transparent 40%),
+    var(--bg);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#app {
+  min-height: 100vh;
+}
+
+.page {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 1.2rem;
+}
+
+.topbar {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.topbar h1 {
+  margin: 0;
+  letter-spacing: 0.03em;
+}
+
+.adminBox {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.adminBox input,
+.createForm input {
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  background: #fff;
+  padding: 0.55rem 0.65rem;
+}
+
+.status {
+  margin: 0 0 1rem;
+  padding: 0.5rem 0.75rem;
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  background: #fff7ea;
+}
+
+.homeGrid,
+.categoryPage {
+  display: grid;
+  gap: 1rem;
+}
+
+.categorySection {
+  border: 3px solid var(--border);
+  border-radius: 14px;
+  background: var(--surface);
+  padding: 1rem;
+}
+
+.categoryHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.categoryHeader h2,
+.categoryToolbar h2 {
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.itemRow {
+  margin-top: 0.8rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 0.75rem;
+}
+
+.itemGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: 0.8rem;
+}
+
+.itemCard {
+  text-align: left;
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface-muted);
+  padding: 0.55rem;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.itemCard:hover {
+  transform: translateY(-2px);
+}
+
+.itemCard img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  border-radius: 8px;
+  background: #d8d8d8;
+}
+
+.itemCard strong {
+  display: block;
+  margin-top: 0.5rem;
+}
+
+.createForm {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr auto;
+  gap: 0.6rem;
+  padding: 0.8rem;
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+}
+
+.categoryToolbar {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+button {
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  background: #fff;
+  padding: 0.55rem 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #fff4e2;
+}
+
+.backButton {
+  background: #eaf6ff;
+}
+
+.danger {
+  color: #fff;
+  background: var(--danger);
+  border-color: #60120f;
+}
+
+.empty {
+  margin: 0.5rem 0;
+}
+
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  background: rgba(15, 15, 15, 0.65);
+}
+
+.modalCard {
+  width: min(680px, 100%);
+  border: 3px solid var(--border);
+  border-radius: 14px;
+  padding: 1rem;
+  background: var(--surface);
+}
+
+.modalCard img {
+  width: 100%;
+  max-height: 300px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.modalActions {
+  margin-top: 0.9rem;
+  display: flex;
+  gap: 0.6rem;
+}
+
+@media (max-width: 850px) {
+  .topbar {
+    flex-direction: column;
+    align-items: start;
+  }
+
+  .createForm {
+    grid-template-columns: 1fr;
+  }
+}

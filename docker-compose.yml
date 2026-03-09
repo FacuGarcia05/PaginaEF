@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: paginaef_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: iruzami
+      POSTGRES_PASSWORD: paginaef
+      POSTGRES_DB: paginaef
+    ports:
+      - "5433:5432"
+    volumes:
+      - paginaef_postgres_data:/var/lib/postgresql/data
+
+volumes:
+  paginaef_postgres_data:
