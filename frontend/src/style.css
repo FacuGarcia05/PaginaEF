@@ -49,6 +49,27 @@ body {
 .adminBox {
   display: grid;
   gap: 0.35rem;
+  position: relative;
+}
+
+.adminActions {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.loginPanel {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 0.35rem);
+  min-width: 220px;
+  display: grid;
+  gap: 0.4rem;
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  padding: 0.6rem;
+  background: var(--surface);
+  z-index: 10;
 }
 
 .adminBox input,

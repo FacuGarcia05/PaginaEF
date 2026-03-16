@@ -51,6 +51,8 @@ export default function App() {
   const [activeCategoryData, setActiveCategoryData] = useState<CategoryItemsResponse | null>(null);
   const [selectedItem, setSelectedItem] = useState<Item | null>(null);
   const [adminKey, setAdminKey] = useState('');
+  const [adminKeyDraft, setAdminKeyDraft] = useState('');
+  const [showLogin, setShowLogin] = useState(false);
   const [status, setStatus] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
@@ -136,6 +138,24 @@ export default function App() {
     }
   }
 
+  function handleConfirmLogin() {
+    if (!adminKeyDraft.trim()) {
+      setStatus('Ingresa la clave para iniciar sesion.');
+      return;
+    }
+    setAdminKey(adminKeyDraft.trim());
+    setAdminKeyDraft('');
+    setShowLogin(false);
+    setStatus('Sesion iniciada.');
+  }
+
+  function handleLogout() {
+    setAdminKey('');
+    setAdminKeyDraft('');
+    setShowLogin(false);
+    setStatus('Sesion cerrada.');
+  }
+
   async function handleDeleteItem(id: string) {
     setStatus('');
     try {
@@ -159,16 +179,34 @@ export default function App() {
   return (
     <div className="page">
       <header className="topbar">
-        <h1>Catalogo Personal</h1>
+        <h1>PaginaEF</h1>
         <div className="adminBox">
-          <label htmlFor="admin-key">Admin key</label>
-          <input
-            id="admin-key"
-            type="password"
-            value={adminKey}
-            onChange={(event) => setAdminKey(event.target.value)}
-            placeholder="x-admin-key"
-          />
+          <div className="adminActions">
+            {!canManage ? (
+              <button onClick={() => setShowLogin((prev) => !prev)} type="button">
+                Iniciar sesion
+              </button>
+            ) : (
+              <button onClick={handleLogout} type="button">
+                Cerrar sesion
+              </button>
+            )}
+          </div>
+          {showLogin && !canManage && (
+            <div className="loginPanel">
+              <label htmlFor="admin-key">Ingrese la contraseña</label>
+              <input
+                id="admin-key"
+                type="password"
+                value={adminKeyDraft}
+                onChange={(event) => setAdminKeyDraft(event.target.value)}
+                placeholder="contraseña"
+              />
+              <button onClick={handleConfirmLogin} type="button">
+                Confirmar
+              </button>
+            </div>
+          )}
         </div>
       </header>
 
